@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elegant Flora Boutique",
-  description: "Beautiful AI-powered website creation platform",
+  title: "Universal Marketplace",
+  description: "Your Universal Online Marketplace - Buy and sell everything in one place",
 };
 
 export default function RootLayout({

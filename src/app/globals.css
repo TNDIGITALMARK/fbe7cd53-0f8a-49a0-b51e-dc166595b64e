@@ -26,6 +26,37 @@ All colors MUST be HSL.
   --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%;
 
+  /* Vibrant Color Palette */
+  --emerald: 158 64% 52%;
+  --emerald-foreground: 155 84% 8%;
+
+  --violet: 262 83% 58%;
+  --violet-foreground: 210 40% 98%;
+
+  --orange: 25 95% 53%;
+  --orange-foreground: 26 83% 14%;
+
+  --pink: 328 86% 70%;
+  --pink-foreground: 210 40% 98%;
+
+  --teal: 173 80% 40%;
+  --teal-foreground: 210 40% 98%;
+
+  --amber: 45 93% 47%;
+  --amber-foreground: 26 83% 14%;
+
+  --indigo: 239 84% 67%;
+  --indigo-foreground: 210 40% 98%;
+
+  --rose: 351 89% 60%;
+  --rose-foreground: 210 40% 98%;
+
+  /* Gradient Variables */
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--violet)) 100%);
+  --gradient-emerald: linear-gradient(135deg, hsl(var(--emerald)) 0%, hsl(var(--teal)) 100%);
+  --gradient-sunset: linear-gradient(135deg, hsl(var(--orange)) 0%, hsl(var(--rose)) 100%);
+  --gradient-cool: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--teal)) 100%);
+
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
@@ -73,6 +104,32 @@ All colors MUST be HSL.
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 212.7 26.8% 83.9%;
+
+  /* Dark Mode Vibrant Colors */
+  --emerald: 158 64% 52%;
+  --emerald-foreground: 155 84% 95%;
+
+  --violet: 262 83% 67%;
+  --violet-foreground: 210 40% 98%;
+
+  --orange: 25 95% 60%;
+  --orange-foreground: 26 83% 95%;
+
+  --pink: 328 86% 75%;
+  --pink-foreground: 210 40% 98%;
+
+  --teal: 173 80% 45%;
+  --teal-foreground: 210 40% 98%;
+
+  --amber: 45 93% 55%;
+  --amber-foreground: 26 83% 95%;
+
+  --indigo: 239 84% 72%;
+  --indigo-foreground: 210 40% 98%;
+
+  --rose: 351 89% 65%;
+  --rose-foreground: 210 40% 98%;
+
   --sidebar-background: 240 5.9% 10%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-primary: 224.3 76.3% 48%;
@@ -124,6 +181,31 @@ All colors MUST be HSL.
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Vibrant Color Mappings */
+  --color-emerald: hsl(var(--emerald));
+  --color-emerald-foreground: hsl(var(--emerald-foreground));
+
+  --color-violet: hsl(var(--violet));
+  --color-violet-foreground: hsl(var(--violet-foreground));
+
+  --color-orange: hsl(var(--orange));
+  --color-orange-foreground: hsl(var(--orange-foreground));
+
+  --color-pink: hsl(var(--pink));
+  --color-pink-foreground: hsl(var(--pink-foreground));
+
+  --color-teal: hsl(var(--teal));
+  --color-teal-foreground: hsl(var(--teal-foreground));
+
+  --color-amber: hsl(var(--amber));
+  --color-amber-foreground: hsl(var(--amber-foreground));
+
+  --color-indigo: hsl(var(--indigo));
+  --color-indigo-foreground: hsl(var(--indigo-foreground));
+
+  --color-rose: hsl(var(--rose));
+  --color-rose-foreground: hsl(var(--rose-foreground));
   
   /* Border Radius */
   --radius-lg: var(--radius);
@@ -159,5 +241,50 @@ All colors MUST be HSL.
 
 body {
   background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(circle at 20% 50%, hsl(var(--violet) / 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, hsl(var(--emerald) / 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, hsl(var(--orange) / 0.02) 0%, transparent 50%);
   color: hsl(var(--foreground));
+  min-height: 100vh;
 }
+
+/* Utility Classes for Vibrant Colors */
+.text-emerald { color: hsl(var(--emerald)); }
+.text-violet { color: hsl(var(--violet)); }
+.text-orange { color: hsl(var(--orange)); }
+.text-pink { color: hsl(var(--pink)); }
+.text-teal { color: hsl(var(--teal)); }
+.text-amber { color: hsl(var(--amber)); }
+.text-indigo { color: hsl(var(--indigo)); }
+.text-rose { color: hsl(var(--rose)); }
+
+.bg-emerald { background-color: hsl(var(--emerald)); color: hsl(var(--emerald-foreground)); }
+.bg-violet { background-color: hsl(var(--violet)); color: hsl(var(--violet-foreground)); }
+.bg-orange { background-color: hsl(var(--orange)); color: hsl(var(--orange-foreground)); }
+.bg-pink { background-color: hsl(var(--pink)); color: hsl(var(--pink-foreground)); }
+.bg-teal { background-color: hsl(var(--teal)); color: hsl(var(--teal-foreground)); }
+.bg-amber { background-color: hsl(var(--amber)); color: hsl(var(--amber-foreground)); }
+.bg-indigo { background-color: hsl(var(--indigo)); color: hsl(var(--indigo-foreground)); }
+.bg-rose { background-color: hsl(var(--rose)); color: hsl(var(--rose-foreground)); }
+
+.bg-gradient-primary { background: var(--gradient-primary); }
+.bg-gradient-emerald { background: var(--gradient-emerald); }
+.bg-gradient-sunset { background: var(--gradient-sunset); }
+.bg-gradient-cool { background: var(--gradient-cool); }
+
+/* Enhanced Shadows with Color */
+.shadow-emerald { box-shadow: 0 4px 14px 0 hsl(var(--emerald) / 0.15); }
+.shadow-violet { box-shadow: 0 4px 14px 0 hsl(var(--violet) / 0.15); }
+.shadow-orange { box-shadow: 0 4px 14px 0 hsl(var(--orange) / 0.15); }
+.shadow-pink { box-shadow: 0 4px 14px 0 hsl(var(--pink) / 0.15); }
+
+/* Category-specific color classes */
+.category-electronics { @apply bg-indigo text-indigo-foreground; }
+.category-fashion { @apply bg-pink text-pink-foreground; }
+.category-home { @apply bg-emerald text-emerald-foreground; }
+.category-books { @apply bg-amber text-amber-foreground; }
+.category-sports { @apply bg-orange text-orange-foreground; }
+.category-toys { @apply bg-violet text-violet-foreground; }
+.category-automotive { @apply bg-teal text-teal-foreground; }
+.category-beauty { @apply bg-rose text-rose-foreground; }

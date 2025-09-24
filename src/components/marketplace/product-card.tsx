@@ -42,9 +42,25 @@ export function ProductCard({
     onToggleFavorite?.(product);
   };
 
+  // Get category-based color
+  const getCategoryColor = (category: string) => {
+    const colorMap: { [key: string]: string } = {
+      'electronics': 'indigo',
+      'fashion': 'pink',
+      'beauty': 'rose',
+      'sports': 'orange',
+      'home-goods': 'emerald',
+      'books': 'amber',
+      'toys': 'violet',
+    };
+    return colorMap[category] || 'primary';
+  };
+
+  const categoryColor = getCategoryColor(product.category);
+
   return (
     <Link href={`/products/${product.id}`}>
-      <Card className={`group hover:shadow-lg transition-all duration-200 cursor-pointer ${className}`}>
+      <Card className={`group hover:shadow-xl transition-all duration-300 cursor-pointer border-0 bg-white/80 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-${categoryColor} ${className}`}>
         <CardContent className="p-0">
           {/* Image Container */}
           <div className="relative aspect-square overflow-hidden rounded-t-lg">
@@ -52,16 +68,21 @@ export function ProductCard({
               src={product.images[0]}
               alt={product.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-200"
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             />
+
+            {/* Color Overlay Gradient */}
+            <div className={`absolute inset-0 bg-gradient-to-t from-${categoryColor}/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
             {/* Favorite Button */}
             <Button
               size="sm"
               variant="ghost"
-              className={`absolute top-2 right-2 h-8 w-8 rounded-full bg-white/80 hover:bg-white ${
-                isFavorite ? 'text-red-500' : 'text-gray-600'
+              className={`absolute top-3 right-3 h-9 w-9 rounded-full backdrop-blur-md transition-all duration-200 ${
+                isFavorite
+                  ? 'bg-rose/20 text-rose border border-rose/30 shadow-lg shadow-rose/25'
+                  : 'bg-white/80 hover:bg-white text-gray-600 hover:text-rose shadow-lg'
               }`}
               onClick={handleToggleFavorite}
             >
@@ -70,58 +91,71 @@ export function ProductCard({
 
             {/* Featured Badge */}
             {product.featured && (
-              <Badge className="absolute top-2 left-2 bg-primary">Featured</Badge>
+              <Badge className={`absolute top-3 left-3 bg-gradient-primary text-white border-0 shadow-lg backdrop-blur-sm font-medium px-3`}>
+                ✨ Featured
+              </Badge>
             )}
 
             {/* Out of Stock Overlay */}
             {!product.inStock && (
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <Badge variant="destructive">Out of Stock</Badge>
+              <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                <Badge variant="destructive" className="shadow-lg">Out of Stock</Badge>
               </div>
             )}
           </div>
 
           {/* Content */}
-          <div className="p-4">
+          <div className="p-4 bg-gradient-to-b from-transparent to-gray-50/50">
             {/* Category */}
-            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-              {product.category.replace('-', ' ')}
-            </p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${categoryColor}/10 text-${categoryColor} border border-${categoryColor}/20`}>
+                {product.category.replace('-', ' ')}
+              </span>
+            </div>
 
             {/* Title */}
-            <h3 className="font-medium text-sm mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            <h3 className={`font-semibold text-sm mb-2 line-clamp-2 group-hover:text-${categoryColor} transition-colors duration-200`}>
               {product.title}
             </h3>
 
             {/* Rating */}
             <div className="flex items-center gap-1 mb-2">
-              <div className="flex items-center">
-                <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+              <div className="flex items-center bg-amber/10 rounded-full px-2 py-1">
+                <Star className="h-3 w-3 fill-amber text-amber" />
+                <span className="text-xs font-medium text-amber-700 ml-1">
+                  {product.rating}
+                </span>
                 <span className="text-xs text-muted-foreground ml-1">
-                  {product.rating} ({product.reviewCount})
+                  ({product.reviewCount})
                 </span>
               </div>
             </div>
 
             {/* Seller */}
-            <p className="text-xs text-muted-foreground mb-3">
-              by {product.seller.name}
+            <div className="flex items-center gap-2 mb-3">
+              <p className="text-xs text-muted-foreground">
+                by {product.seller.name}
+              </p>
               {product.seller.verified && (
-                <Badge variant="secondary" className="ml-1 text-xs h-4">✓</Badge>
+                <Badge className={`bg-emerald/10 text-emerald border border-emerald/20 text-xs h-5 px-2`}>
+                  ✓ Verified
+                </Badge>
               )}
-            </p>
+            </div>
 
             {/* Price and Add to Cart */}
             <div className="flex items-center justify-between">
-              <span className="font-bold text-lg">{formatPrice(product.price)}</span>
+              <span className={`font-bold text-lg text-${categoryColor}`}>
+                {formatPrice(product.price)}
+              </span>
 
               <Button
                 size="sm"
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
-                className="h-8 px-3"
+                className={`h-9 px-4 bg-${categoryColor} hover:bg-${categoryColor}/90 text-white shadow-lg hover:shadow-${categoryColor}/25 transition-all duration-200`}
               >
-                <ShoppingCart className="h-3 w-3 mr-1" />
+                <ShoppingCart className="h-3 w-3 mr-2" />
                 Add
               </Button>
             </div>

@@ -40,44 +40,60 @@ export default function HomePage() {
   const featuredProducts = products.filter(product => product.featured);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <NavigationBar onSearch={handleSearch} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Your Universal Marketplace
-          </h1>
-          <Button size="lg" className="rounded-full px-8">
-            Start Selling
-          </Button>
+        <div className="text-center mb-16 relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-violet/5 via-transparent to-emerald/5 rounded-3xl -z-10"></div>
+          <div className="py-12 px-8">
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-violet via-primary to-emerald bg-clip-text text-transparent mb-6 leading-tight">
+              Your Universal Marketplace
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Discover amazing products from verified sellers around the world
+            </p>
+            <Button size="lg" className="rounded-full px-10 py-6 text-lg bg-gradient-sunset hover:bg-gradient-cool shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold">
+              ✨ Start Selling
+            </Button>
+          </div>
         </div>
 
         {/* Categories Grid */}
-        <section className="mb-12">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Categories</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        <section className="mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-2">
+              Shop by Category
+            </h2>
+            <p className="text-gray-600">Find exactly what you're looking for</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
             {featuredCategories.map((category) => (
               <CategoryPill key={category.id} category={category} />
             ))}
           </div>
-          <div className="text-center mt-6">
-            <Button variant="outline" size="sm">
-              More
+          <div className="text-center">
+            <Button variant="outline" size="sm" className="rounded-full px-6 border-violet/30 text-violet hover:bg-violet/10 hover:border-violet transition-colors duration-200">
+              View All Categories
             </Button>
           </div>
         </section>
 
         {/* Search Results or Featured Products */}
         <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">
-              {searchQuery ? `Search Results for "${searchQuery}"` : 'Featured Products'}
-            </h2>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-2">
+                {searchQuery ? `Search Results for "${searchQuery}"` : 'Featured Products'}
+              </h2>
+              <p className="text-gray-600">
+                {searchQuery ? 'Products matching your search' : 'Handpicked items from top sellers'}
+              </p>
+            </div>
             {!searchQuery && (
-              <Button variant="ghost" size="sm">
-                View All
+              <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10 transition-colors duration-200">
+                View All →
               </Button>
             )}
           </div>
@@ -105,9 +121,14 @@ export default function HomePage() {
 
         {/* Additional Categories */}
         {!searchQuery && (
-          <section className="mt-16">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">More Categories</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <section className="mt-20">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-2">
+                More Categories
+              </h2>
+              <p className="text-gray-600">Explore even more product categories</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {categories.filter(cat => !cat.featured).map((category) => (
                 <CategoryPill key={category.id} category={category} className="md:col-span-1" />
               ))}
